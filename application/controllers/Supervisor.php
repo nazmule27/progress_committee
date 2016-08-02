@@ -12,7 +12,6 @@ class Supervisor extends CI_Controller {
 	}
 	public function index()
 	{
-
 		$CI = &get_instance();
 		$username = $CI->session->userdata('username');
 		$data['all_committee'] = $this->Supervisor_model->getUpcomingMeetings($username);

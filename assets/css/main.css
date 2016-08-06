@@ -194,7 +194,10 @@ legend {
 .font-size-15 {
 	font-size: 16px;
 }
-
+.login_error {
+	color: red;
+	text-align: center;
+}
 
 
 

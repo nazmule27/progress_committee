@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('common/header');
 $this->load->view('common/navbar');
-$k=1;
 ?>
 
 <div class="col-md-9 col-sm-8 col-xs-12">
@@ -69,7 +68,7 @@ $this->load->view('common/footer');
         minDate: new Date(),
         step:15,
         closeOnTimeSelect:true,
-        value:new Date().toJSON().slice(0, 10)+' 02:30:00',
+        value:new Date().toJSON().slice(0, 10)+' 14:30:00',
     });
     $('select[name=meeting_type]').change(function () {
         if ($(this).val() == 'defense') {

@@ -84,7 +84,24 @@ class Committee_model extends CI_Model
         $query = $this->db->get();
         return $result = $query->result();
     }
-
+    public function validateExternalUsername($data) {
+        $this->db->where('username', $data);
+        return $this->db->get('external')->row();
+    }
+    public function validateExternalEmail($data) {
+        $this->db->where('email', $data);
+        return $this->db->get('external')->row();
+    }
+    public function saveExternal($data, $data_user)
+    {
+        $this->db->insert('external', $data);
+        $this->db->insert('users', $data_user);
+    }
+    public function getExternal()
+{
+    $query = $this->db->get('external');
+    return $result = $query->result();
+}
     function __destruct() {
         $this->db->close();
     }

@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('common/header');
 $this->load->view('common/navbar');
-$k=1;
 ?>
 
 <div class="col-md-9 col-sm-8 col-xs-12">

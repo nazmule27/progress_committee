@@ -78,5 +78,42 @@ class Committee extends CI_Controller {
 		$data['committees'] = $this->Committee_model->getSingleCommitteeMembers($id);
 		$this->load->view('admin/committee_print',$data);
 	}
-
+	public function add()
+	{
+		$this->load->view('admin/add_external');
+	}
+	public function add_external()
+	{
+		$username = $this->Committee_model->validateExternalUsername($this->input->post('username'));
+		$email = $this->Committee_model->validateExternalEmail($this->input->post('email'));
+		if(empty($username)&&empty($email)) {
+			$data = array(
+				'username' => $this->input->post('username'),
+				'full_name' => $this->input->post('full_name'),
+				'designation' => $this->input->post('designation'),
+				'email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'type' => $this->input->post('type'),
+			);
+			$data_user = array(
+				'username' => $this->input->post('username'),
+				'full_name' => $this->input->post('full_name'),
+				'designation' => $this->input->post('designation'),
+				'role' => 'External',
+				'email' => $this->input->post('email'),
+			);
+			$this->Committee_model->saveExternal($data, $data_user);
+			$data['success_msg'] = '<div class="alert alert-success text-center">External  added successfully !<strong><a class="close" title="close" aria-label="close" data-dismiss="alert" href="#"> &times;</a> </strong></div>';
+			$this->load->view('admin/add_external', $data);
+		}
+		else {
+			$data['success_msg'] = '<div class="alert alert-warning text-center">This external already exist !<strong><a class="close" title="close" aria-label="close" data-dismiss="alert" href="#"> &times;</a> </strong></div>';
+			$this->load->view('admin/add_external', $data);
+		}
+	}
+	public function external_list()
+	{
+		$data['all_external'] = $this->Committee_model->getExternal();
+		$this->load->view('admin/external_list', $data);
+	}
 }
